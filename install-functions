@@ -1,0 +1,129 @@
+#!/bin/bash
+
+# Append file (named in $addendum) to $target (once)
+#
+# Uses the first non-blank line in $addendum as the fingerprint to
+# determine whether or not the file's contents have been incorporated into
+# $target
+function append () {
+    local target=$1
+    local addendum=$2
+
+    local fingerprint=`grep -v -m 1 -P '^\s*$' $addendum`
+
+    if [ ! -e $target ]
+    then
+        echo "?target file ($target) doesn't exist...  skipped"
+        return
+    fi
+
+    if grep -q -F -e "$fingerprint" $target
+    then
+        echo "ok"
+    else
+        /bin/cp $target $target.orig
+        /bin/cat $addendum >>$target
+        UPDATED="y"
+        echo "updated"
+    fi
+}
+
+#
+# Replace dest file w/ link to src file, preserving original (if it
+# exists).
+#
+# Depending on the additional parameters, set the mode, user, and/or
+# group as well.
+#
+# Usage:
+#
+#   mklink <src> <dest> [mode] [user] [group]
+#
+# Example:
+#
+#   mklink $PWD/etc/meridian-ldap.conf /etc/ldap.conf '' ldap ldap
+#
+# Link /etc/ldap.conf to /system/sysadmin/etc/meridian-ldap.conf, setting
+# the owner and group to ldap.
+#
+function mklink () {
+    local src=$1;
+    local dest=$2;
+    local mode=$3;
+    local user=$4;
+    local group=$5;
+    local msg="ok";
+
+    if [ ! -e $src ]
+    then
+        echo "mklink(): ?Source file $src does not exist"
+        return 1
+    fi
+
+    # Preserve original file.
+    if [ ! -e $dest.orig ] && [ ! -L $dest ]
+    then
+        [ -e $dest ] && /bin/mv $dest $dest.orig
+        msg="updated orig"
+    fi
+    if [ ! -L $dest ]
+    then
+        /bin/ln -sf $src $dest
+        msg="updated link"
+    elif [ ! -r $dest ]
+    then
+        # Replace link if we can't read from it (wrong path?)
+        /bin/rm $dest
+        /bin/ln -sf $src $dest
+        msg="replaced link"
+    fi
+    if [ -n "$mode" ]
+    then
+        cmd=`/bin/chmod -c $mode $dest`
+        if [ -n "$cmd" ]
+        then
+            msg="updated mode"
+        fi
+    fi
+    if [ -n "$user" ]
+    then
+        cmd=`/bin/chown -c $user $dest`
+        if [ -n "$cmd" ]
+        then
+            msg="updated user"
+        fi
+    fi
+    if [ -n "$group" ]
+    then
+        cmd=`/bin/chgrp -c $group $dest`
+        if [ -n "$cmd" ]
+        then
+            msg="updated group"
+        fi
+    fi
+    echo "$msg"
+    if [ ${msg:0:7} == 'updated' ]
+    then
+        # Compatiblity for sendmail checking script.
+        UPDATED="y"
+    fi
+}
+
+# Replace line $what w/ $with in $file (I think)
+function repline () {
+    local file=$1;
+    local what=$2;
+    local with=$3;
+    if grep -q "^$what$" $file
+    then
+        if sed -e "s/^$what$/$with/;" $file > /var/tmp/repline.tmp
+        then cp /var/tmp/repline.tmp $file; fi
+        UPDATED="y"
+        echo "updated"
+    else
+        echo "ok"
+    fi
+}
+
+
+# vim: et sts=4 sw=4

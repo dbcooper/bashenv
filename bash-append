@@ -1,0 +1,3 @@
+
+# Load personal bash configuration
+. ~/.mybashrc

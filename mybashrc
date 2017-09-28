@@ -1,0 +1,111 @@
+#
+# .bashrc - setup standard environment for each bash shell invocation
+#
+SHELL=/bin/bash; export SHELL                   # default shell is /bin/bash
+
+# default EDITOR is vi
+if [ -x /usr/bin/nvim ]
+then
+    EDITOR=/usr/bin/nvim
+    alias vi='nvim'
+elif [ -x /usr/bin/vim ]
+then
+    EDITOR=/usr/bin/vim
+    alias vi='vim'
+fi
+
+export EDITOR
+
+
+#PS1='\h:$PWD\$ '; export PS1                   # set default prompt
+ulimit -c 0                                     # don't save core dumps
+
+PATH=$PATH:/sbin:/usr/sbin:$HOME/bin
+
+alias more=less                                 # less is more
+alias ls='ls -FC --color=auto'                  # add options to ls(1)
+alias cls='clear'
+
+# Moar colors
+if [ "$COLORTERM" = 'gnome-terminal' ]
+then
+    TERM='xterm-256color'
+fi
+
+# TODO  Adjust these aliases
+# ViM settings (different colors for xterm consoles).
+if [ -x /usr/bin/vim ]
+then
+    if    [ $TERM = "xterm" ] || [ $TERM = "xterm-color" ]  \
+       || [ $TERM = "rxvt" ]  || [ $TERM = 'screen' ]
+    then
+        # Assume I'm using the gnome terminal
+        alias vi='vim -u ~/.terminal_vimrc'
+        alias vimdiff='vimdiff -u ~/.terminal_vimrc'
+        alias gvdiff='gvimdiff'
+        export EDITOR='vim -u ~/.terminal_vimrc'
+        alias svi="sudo vim -u ~$USERNAME/.terminal_vimrc"
+    fi
+fi
+
+# Pmwiki editor setup
+#alias pmwe='pmwe -g -m ~/.pmwemap -p ~/.pmwepass'
+
+# Stupid Ubuntu
+if [ -x /usr/bin/ack-grep ]
+then
+    alias ack='ack-grep'
+fi
+
+# Android SDK
+#export PATH=$PATH:$HOME/builds/android-sdk-linux_86/tools
+
+# JtR
+#export JOHN=$HOME/builds/john-1.7.6/run
+
+# From https://fedoramagazine.org/add-power-terminal-powerline/
+if [ -f `which powerline-daemon` ]
+then
+    powerline-daemon -q
+    POWERLINE_BASH_CONTINUATION=1
+    POWERLINE_BASH_SELECT=1
+    . /usr/share/powerline/bash/powerline.sh
+elif [ -r "$HOME/.git-completion.bash" ]
+then
+    # Git on command-prompt stuff, shamelessly copied from James' .bashrc
+    # (w/ slight modifications)
+    source $HOME/.git-completion.bash
+    GIT_PS1_SHOWDIRTYSTATE=1
+    GIT_PS1_SHOWSTASHSTATE=1
+    GIT_PS1_SHOWUPSTREAM="auto"
+
+    #export PS1='[[\e[32m\]\u@\h \[\e[33m\]\W\[\e[34m\]$(__git_ps1 " (%s)")\[\e[0m\]]$ '
+    #           [ {green}  \u@\h  {yellow} \W {blue}   git info             {normal}]$
+    export PS1='\h:\w$(__git_ps1 " \[\e[33m\](%s)\[\e[0m\]")$ '
+fi
+
+# For Skype?  http://developer.skype.com/LinuxSkype
+#export QT_PLUGIN_PATH=/usr/lib32/qt4/plugins skype
+
+# Mangler
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
+
+# Pharosdb
+export PDBROOT=$HOME/git/pharosdb
+
+# Alternate shell stuff
+if [ "$INCONSOLATA" = 'true' ]
+then
+    export PS1='\h:\w$(__git_ps1 " \[\e[33m\](%s)\[\e[0m\]")\n➜  '
+    alias gvim='gvim -U ~/.gvimrc-inconsolata'
+fi
+
+# Node.js  https://github.com/nodejs/help/wiki/Installation
+export NODEJS_HOME=/usr/local/nodejs/node-v6.9.1
+PATH=$PATH:$NODEJS_HOME/bin
+
+# CasperJS
+PATH=$PATH:$HOME/node_modules/casperjs/bin
+
+# From _Perl_Hacks_, p65
+function pmver () { perl -M$1 -le "print $1->VERSION"; }
