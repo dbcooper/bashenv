@@ -1,0 +1,30 @@
+[user]
+        email = niall.durham@tamucc.edu
+        name = "Niall Durham"
+[alias]
+	ci = commit
+	st = status
+	co = checkout
+        br = branch
+[core]
+	excludesfile = ~/.gitexcludes
+[color]
+	branch = auto
+	diff = auto
+	status = auto
+[color "branch"]
+        current = blue reverse
+        local = blue
+        remote = green
+[color "diff"]
+        meta = blue bold
+        frag = magenta bold
+        old = red bold
+        new = green bold
+[color "status"]
+        added = blue 
+        changed = green
+        untracked = cyan
+[push]
+        default = tracking
+

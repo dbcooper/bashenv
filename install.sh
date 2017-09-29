@@ -8,8 +8,10 @@ then
     mklink /usr/share/bash-completion/completions/git ~/.git-completion.bash
 fi
 
-mklink $PWD/inputrc  ~/.inputrc
-mklink $PWD/mybashrc ~/.mybashrc
+mklink $PWD/inputrc       ~/.inputrc
+mklink $PWD/mybashrc      ~/.mybashrc
+mklink $PWD/gitconfig     ~/.gitconfig
+mklink $PWD/gitexcludes   ~/.gitexcludes
 
 # Load our bash magic on login
 if [ -r ~/.bashrc ]
