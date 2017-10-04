@@ -13,6 +13,10 @@ mklink $PWD/mybashrc      ~/.mybashrc
 mklink $PWD/gitconfig     ~/.gitconfig
 mklink $PWD/gitexcludes   ~/.gitexcludes
 
+# Powerline
+mkdir -p ~/.config/powerline
+mklink $PWD/powerline_config.json  ~/.config/powerline/config.json
+
 # Load our bash magic on login
 if [ -r ~/.bashrc ]
 then
