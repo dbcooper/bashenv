@@ -13,9 +13,7 @@ then
     EDITOR=/usr/bin/vim
     alias vi='vim'
 fi
-
 export EDITOR
-
 
 #PS1='\h:$PWD\$ '; export PS1                   # set default prompt
 ulimit -c 0                                     # don't save core dumps

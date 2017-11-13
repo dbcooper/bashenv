@@ -1,0 +1,121 @@
+" Niall's ViM configuration file
+
+set nocompatible        " Use Vim defaults (much better!)
+set bs=2                " allow backspacing over everything in insert mode
+"set smartindent         " always autoindent
+set nobackup            " don't keep a backup file
+set viminfo='20,\"50    " read/write a .viminfo file, don't store more
+                        " than 50 lines of registers
+set ruler               " show line number and column
+set showmatch           " show the previous matching parenthesis
+set expandtab
+set sts=8 sw=8          " default tab and shift widths
+set visualbell          " stop beeping at me!
+set fileformat=unix
+"set ignorecase         " case doesn't matter
+set smartcase           " capital letters are significant
+set modeline            " read vim: lines for file-specific settings
+set laststatus=2
+set foldmethod=indent
+
+" For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
+" let &guioptions = substitute(&guioptions, "t", "", "g")
+
+" Don't use Ex mode, use Q for formatting
+map Q gq
+
+" Switch syntax highlighting on, when the terminal has colors
+" Also switch on highlighting the last used search pattern.
+if &t_Co > 2 || has("gui_running")
+    syntax on
+    setlocal hlsearch
+endif
+
+" Function key mappings
+
+map #2 :set invpaste
+set pastetoggle=<F2>
+map #3 :setlocal sts=2 sw=2 cindent
+map #4 :NERDTree
+
+" From perl-support plugin
+noremap  <silent> <F5>    :copen<CR>
+noremap  <silent> <F6>    :cclose<CR>
+noremap  <silent> <F7>    :cp<CR>
+noremap  <silent> <F8>    :cn<CR>
+
+map #9 :w:!ispell %:e
+
+" File-format specific configurations (mostly indenting)
+au BufEnter *.txt                       setlocal tw=70 sts=8 sw=8
+au FileType perl,php,javascript         setlocal sw=4 sts=4
+au BufEnter *.html,*.shtml              setlocal sw=2 sts=2
+au BufEnter *.tmpl                      setlocal filetype=html
+au FileType xml,html                    setlocal sw=2 sts=2
+au FileType css                         setlocal sw=4 sts=4
+au FileType sh                          setlocal sw=4 sts=4
+au FileType make                        setlocal sts=0 sw=8 noet
+au FileType c,cpp                       setlocal sw=8 sts=8
+au BufEnter *.tt,*.tt2,*.tt.head        setlocal sw=2 sts=2 filetype=html
+au FileType python                      setlocal sw=4 sts=4
+
+" Don't highlight matching parenthesis.
+let loaded_matchparen = 1
+
+" Configuration for automatic indenting (# annoyance)
+if has("autocmd")
+    filetype plugin on
+    filetype indent on
+endif
+
+set tags=./tags;$HOME
+
+" Plugins (thanks Domingo!)
+" See https://github.com/junegunn/vim-plug
+call plug#begin()
+
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'tomasr/molokai'
+Plug 'scrooloose/nerdtree'
+Plug 'michalbachowski/vim-wombat256mod'
+Plug 'WolfgangMehner/perl-support'
+Plug 'garbas/vim-snipmate'
+Plug 'honza/vim-snippets'
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'tomtom/tlib_vim'
+
+call plug#end()
+
+if has("gui_running")
+    colorscheme molokai
+endif
+
+" From http://www.robmeerman.co.uk/unix/256colours
+"
+" Work-around incomplete terminfo databases
+" Particulalry useful when under `screen`, which may or may not be attached
+" to a physical terminal capable of 256color mode.
+if match($TERMCAP, 'Co#256:') == 0 || match($TERMCAP, ':Co#256:') > 0
+    set t_Co=256
+    colorscheme molokai
+endif
+
+" In case the $TERMCAP test above didn't fire (e.g., beholder)
+if &t_Co == 256
+    colorscheme molokai
+endif
+
+" airline
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+
+" powerline symbols
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''
