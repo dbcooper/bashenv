@@ -4,6 +4,10 @@ source ./install-functions
 
 # TODO  Check/install desired CentOS/Debian/Fedora/Ubuntu packages?
 
+# awk
+# vim packages
+
+# Optional: powerline, neovim
 
 # Link to system git bash completion script (if installed)
 if [ -r /usr/share/bash-completion/completions/git ]
@@ -20,8 +24,11 @@ mklink $PWD/unix-vimrc          ~/.unix_vimrc
 mklink $PWD/gvimrc              ~/.gvimrc
 
 # Powerline
-mkdir -p ~/.config/powerline
-mklink $PWD/powerline_config.json  ~/.config/powerline/config.json
+if [ -n "`which powerline 2>/dev/null`" ]
+then
+    mkdir -p ~/.config/powerline
+    mklink $PWD/powerline_config.json  ~/.config/powerline/config.json
+fi
 
 # Load our bash magic on login
 if [ -r ~/.bashrc ]
@@ -32,7 +39,7 @@ else
     # TODO  Create simple .bashrc?
 fi
 
-# Vim/Neovim stuff
+# Vim/Neovim
 
 # Install vim-plug  https://github.com/junegunn/vim-plug
 if [ ! -r ~/.vim/autoload/plug.vim ]
@@ -40,7 +47,7 @@ then
     echo "Downloading vim-plug for Vim"
     curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
-if [ -n `which nvim` ]
+if [ -n "`which nvim 2>/dev/null`" ]
 then
     mklink $PWD/unix-vimrc  ~/.config/nvim/init.vim
     if [ ! -r ~/.local/share/nvim/site/autoload/plug.vim ]
@@ -55,4 +62,4 @@ fi
 # .fonts directory contents
 # Update system/user fontlist
 
-# SSH configuration?
+# SSH configuration?  For gateway systems only?
