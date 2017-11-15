@@ -74,6 +74,7 @@ then
     # Git on command-prompt stuff, shamelessly copied from James' .bashrc
     # (w/ slight modifications)
     source $HOME/.git-completion.bash
+    [ -h $HOME/.git-prompt.sh ] && source $HOME/.git-prompt.sh
     GIT_PS1_SHOWDIRTYSTATE=1
     GIT_PS1_SHOWSTASHSTATE=1
     GIT_PS1_SHOWUPSTREAM="auto"

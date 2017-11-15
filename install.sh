@@ -9,10 +9,32 @@ source ./install-functions
 
 # Optional: powerline, neovim
 
-# Link to system git bash completion script (if installed)
-if [ -r /usr/share/bash-completion/completions/git ]
+# Locate system git bash completion script (if installed)
+git_completion=/usr/share/bash-completion/completions/git
+git_prompt=
+if [ ! -r $git_completion ]
 then
-    mklink /usr/share/bash-completion/completions/git ~/.git-completion.bash
+    if [ -n "`which git 2>/dev/null`" ]
+    then
+        # Assuming RHEL-based distro, path will vary
+        git_completion=`rpm -q -l git | grep -i 'git-completion\.bash'`
+        git_prompt=`rpm -q -l git | grep -i '/usr/share/doc/.*/git-prompt\.sh'`
+    else
+        git_completion=
+    fi
+fi
+
+# Link it
+if [ -r "$git_completion" ]
+then
+    mklink $git_completion  ~/.git-completion.bash
+fi
+
+# Had to do this on one CentOS 7 install but not sure why .git-completion.bash
+# was not enough
+if [[ "$git_prompt" && -r "$git_prompt" ]]
+then
+    mklink $git_prompt ~/.git-prompt.sh
 fi
 
 mklink $PWD/inputrc             ~/.inputrc
