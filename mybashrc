@@ -65,10 +65,17 @@ fi
 pd_exe=`which powerline-daemon 2>/dev/null`
 if [[ "$pd_exe" && -f $pd_exe ]]
 then
+    pb_source='/usr/share/powerline/bash/powerline.sh'
+    if [ ! -r $pb_source ]
+    then
+        # Adapt to pip-installed powerline
+        pip_path=`pip show powerline-status 2>/dev/null | grep -oP '(?<=Location: )(.*)$'`
+        pb_source="$pip_path/powerline/bindings/bash/powerline.sh"
+    fi
     powerline-daemon -q
     POWERLINE_BASH_CONTINUATION=1
     POWERLINE_BASH_SELECT=1
-    . /usr/share/powerline/bash/powerline.sh
+    . $pb_source
 elif [ -r "$HOME/.git-completion.bash" ]
 then
     # Git on command-prompt stuff, shamelessly copied from James' .bashrc
