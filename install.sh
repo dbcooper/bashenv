@@ -50,6 +50,14 @@ if [ -n "`which powerline 2>/dev/null`" ]
 then
     mkdir -p ~/.config/powerline
     mklink $PWD/powerline_config.json  ~/.config/powerline/config.json
+    pb_source='/usr/share/powerline/bash/powerline.sh'
+    if [ ! -r $pb_source ]
+    then
+        # Adapt to pip-installed powerline
+        pip_path=`pip show powerline-status 2>/dev/null | grep -oP '(?<=Location: )(.*)$'`
+        pb_source="$pip_path/powerline/bindings/bash/powerline.sh"
+    fi
+    mklink $pb_source  ~/.powerline_bindings.sh
 fi
 
 # Load our bash magic on login
@@ -79,7 +87,7 @@ then
     fi
 fi
 
-# TODO  X11/GUI desktop stuff
+# TODO  X11/GUI desktop stuff ?
 
 # .fonts directory contents
 # Update system/user fontlist
