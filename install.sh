@@ -53,9 +53,15 @@ then
     pb_source='/usr/share/powerline/bash/powerline.sh'
     if [ ! -r $pb_source ]
     then
-        # Adapt to pip-installed powerline
-        pip_path=`pip show powerline-status 2>/dev/null | grep -oP '(?<=Location: )(.*)$'`
-        pb_source="$pip_path/powerline/bindings/bash/powerline.sh"
+        if [ -r '/usr/share/powerline/bindings/bash/powerline.sh' ]
+        then
+            # Ubuntu 16
+            pb_source='/usr/share/powerline/bindings/bash/powerline.sh'
+        else
+            # Adapt to pip-installed powerline
+            pip_path=`pip show powerline-status 2>/dev/null | grep -oP '(?<=Location: )(.*)$'`
+            pb_source="$pip_path/powerline/bindings/bash/powerline.sh"
+        fi
     fi
     mklink $pb_source  ~/.powerline_bindings.sh
 fi
