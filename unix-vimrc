@@ -12,7 +12,7 @@ set expandtab
 set sts=8 sw=8          " default tab and shift widths
 set visualbell          " stop beeping at me!
 set fileformat=unix
-"set ignorecase         " case doesn't matter
+set ignorecase          " case doesn't matter
 set smartcase           " capital letters are significant
 set modeline            " read vim: lines for file-specific settings
 set laststatus=2
