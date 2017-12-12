@@ -85,6 +85,7 @@ then
 fi
 if [ -n "`which nvim 2>/dev/null`" ]
 then
+    mkdir -p ~/.config/nvim
     mklink $PWD/unix-vimrc  ~/.config/nvim/init.vim
     if [ ! -r ~/.local/share/nvim/site/autoload/plug.vim ]
     then
