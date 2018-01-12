@@ -30,22 +30,6 @@ then
     TERM='xterm-256color'
 fi
 
-# TODO  Adjust these aliases
-# ViM settings (different colors for xterm consoles).
-if [ -x /usr/bin/vim ]
-then
-    if    [ $TERM = "xterm" ] || [ $TERM = "xterm-color" ]  \
-       || [ $TERM = "rxvt" ]  || [ $TERM = 'screen' ]
-    then
-        # Assume I'm using the gnome terminal
-        alias vi='vim -u ~/.terminal_vimrc'
-        alias vimdiff='vimdiff -u ~/.terminal_vimrc'
-        alias gvdiff='gvimdiff'
-        export EDITOR='vim -u ~/.terminal_vimrc'
-        alias svi="sudo vim -u ~$USERNAME/.terminal_vimrc"
-    fi
-fi
-
 # Pmwiki editor setup
 #alias pmwe='pmwe -g -m ~/.pmwemap -p ~/.pmwepass'
 
@@ -109,3 +93,6 @@ PATH=$PATH:$HOME/node_modules/casperjs/bin
 
 # From _Perl_Hacks_, p65
 function pmver () { perl -M$1 -le "print $1->VERSION"; }
+
+# su shortcut
+alias ssu='sudo su -l'

@@ -44,6 +44,7 @@ mklink $PWD/gitexcludes         ~/.gitexcludes
 mklink $PWD/vimrc               ~/.vimrc
 mklink $PWD/unix-vimrc          ~/.unix_vimrc
 mklink $PWD/gvimrc              ~/.gvimrc
+mklink $PWD/tmux.conf           ~/.tmux.conf
 
 # Powerline
 if [ -n "`which powerline 2>/dev/null`" ]
