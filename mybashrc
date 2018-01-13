@@ -39,9 +39,6 @@ then
     alias ack='ack-grep'
 fi
 
-# Android SDK
-#export PATH=$PATH:$HOME/builds/android-sdk-linux_86/tools
-
 # JtR
 #export JOHN=$HOME/builds/john-1.7.6/run
 
