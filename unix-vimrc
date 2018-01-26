@@ -84,6 +84,7 @@ Plug 'garbas/vim-snipmate'
 Plug 'honza/vim-snippets'
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
+Plug 'noahfrederick/vim-noctu'
 
 call plug#end()
 
@@ -106,16 +107,39 @@ if &t_Co == 256
     colorscheme molokai
 endif
 
-" airline
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
 
-" powerline symbols
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_symbols.branch = ''
-let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = ''
+" Simple terminal
+if &t_Co == 8
+    " Tried to coax Airline into working but was displeased w/ results :\
+    let g_airline_symbols_ascii = 1
+    let g:airline_left_sep='>'
+    "let g:airline_left_alt_sep = '>'
+    let g:airline_right_sep='<'
+    "let g:airline_right_alt_sep = '<'
+    let g:airline_symbols.branch = 'B'
+    let g:airline_symbols.readonly = 'R'
+    let g:airline_symbols.linenr = 'L'
+
+    " Switch to basic modeline
+    au VimEnter * AirlineToggle
+
+    " Shooting for unoffensive coloring
+    colorscheme noctu
+    hi StatusLine   ctermfg=black   ctermbg=magenta
+    hi StatusLineNC ctermfg=magenta ctermbg=black
+elseif &t_Co == 256
+    " Assume 256 color terminal →  Powerline symbols in font
+    " powerline symbols
+    let g:airline_left_sep = ''
+    let g:airline_left_alt_sep = ''
+    let g:airline_right_sep = ''
+    let g:airline_right_alt_sep = ''
+    let g:airline_symbols.branch = ''
+    let g:airline_symbols.readonly = ''
+    let g:airline_symbols.linenr = ''
+endif
+
+" vim: sw=4 sts=4 et

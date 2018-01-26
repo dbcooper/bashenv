@@ -30,6 +30,12 @@ then
     TERM='xterm-256color'
 fi
 
+# Handle "linux" (console) TERM: no powerline, simpler prompt, etc.
+if [ "$TERM" = 'linux' ]
+then
+    SIMPLE_CONSOLE='y'
+fi
+
 # Pmwiki editor setup
 #alias pmwe='pmwe -g -m ~/.pmwemap -p ~/.pmwepass'
 
@@ -44,7 +50,7 @@ fi
 
 # From https://fedoramagazine.org/add-power-terminal-powerline/
 pd_exe=`which powerline-daemon 2>/dev/null`
-if [[ "$pd_exe" && -f $pd_exe ]]
+if [[ "$pd_exe" && -f $pd_exe && -z "$SIMPLE_CONSOLE" ]]
 then
     powerline-daemon -q
     POWERLINE_BASH_CONTINUATION=1
@@ -93,3 +99,5 @@ function pmver () { perl -M$1 -le "print $1->VERSION"; }
 
 # su shortcut
 alias ssu='sudo su -l'
+
+# vim: sts=4 sw=4 et
