@@ -56,7 +56,7 @@ then
     POWERLINE_BASH_CONTINUATION=1
     POWERLINE_BASH_SELECT=1
     . ~/.powerline_bindings.sh
-elif [ -r "$HOME/.git-completion.bash" ]
+elif [ -h "$HOME/.git-completion.bash" -a -e "$HOME/.git-completion.bash" ]
 then
     # Git on command-prompt stuff, shamelessly copied from James' .bashrc
     # (w/ slight modifications)
@@ -69,6 +69,9 @@ then
     #export PS1='[[\e[32m\]\u@\h \[\e[33m\]\W\[\e[34m\]$(__git_ps1 " (%s)")\[\e[0m\]]$ '
     #           [ {green}  \u@\h  {yellow} \W {blue}   git info             {normal}]$
     export PS1='\h:\w$(__git_ps1 " \[\e[33m\](%s)\[\e[0m\]")$ '
+else
+    # Neither powerline nor git-completion function available
+    export PS1='\h:\w$ '
 fi
 
 # For Skype?  http://developer.skype.com/LinuxSkype
