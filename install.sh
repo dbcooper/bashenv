@@ -100,4 +100,9 @@ fi
 # .fonts directory contents
 # Update system/user fontlist
 
-# SSH configuration?  For gateway systems only?
+# TODO  SSH configuration?  For gateway systems only?
+
+# Common little utilities
+mkdir -p ~/bin
+mklink $PWD/plcln.sh                ~/bin/plcln
+mklink $PWD/clean-powerline.sed     ~/bin/clean-powerline.sed
