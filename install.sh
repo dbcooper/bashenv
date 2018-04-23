@@ -25,9 +25,10 @@ then
 fi
 
 # Kluge!  Workaround for Gentoo's git
-if [ -r $git_completion -a ! -r $git_prompt ]
+if [[ -r $git_completion && ! -r $git_prompt ]]
 then
     if [ -r '/usr/share/git/git-prompt.sh' ]
+    then
         git_prompt=/usr/share/git/git-prompt.sh
     fi
 fi
