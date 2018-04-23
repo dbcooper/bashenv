@@ -72,8 +72,8 @@ if [ -r ~/.bashrc ]
 then
     append ~/.bashrc bash-append
 else
-    echo "?No .bashrc file in $HOME, unsure how to proceed"
-    # TODO  Create simple .bashrc?
+    echo "?No existing .bashrc file in $HOME, creating simple version"
+    cp bash-append ~/.bashrc
 fi
 
 # Vim/Neovim
