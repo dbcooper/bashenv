@@ -24,6 +24,14 @@ then
     fi
 fi
 
+# Kluge!  Workaround for Gentoo's git
+if [ -r $git_completion -a ! -r $git_prompt ]
+then
+    if [ -r '/usr/share/git/git-prompt.sh' ]
+        git_prompt=/usr/share/git/git-prompt.sh
+    fi
+fi
+
 # Link it
 if [ -r "$git_completion" ]
 then
