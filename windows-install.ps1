@@ -4,12 +4,14 @@
 #    Set-ExecutionPolicy RemoteSigned
 #
 
-# Apparently $HOME is set as well (and case insensitive?).  ~ works too?
-$autoload_path  = "$HOME\vimfiles\autoload"
+# Allow for HOMEDRIVE, HOMEPATH changes due to network mount/AD directive
+$my_home        = "$Env:HOMEDRIVE$Env:HOMEPATH"
+
+$autoload_path  = "$my_home\vimfiles\autoload"
 $plug_file      = "$autoload_path\plug.vim"
-$vimrc_file     = "$HOME\.unix_vimrc"
-$gvimrc_file    = "$HOME\.gvimrc"
-$gitconfig_file = "$HOME\.gitconfig"
+$vimrc_file     = "$my_home\.unix_vimrc"
+$gvimrc_file    = "$my_home\.gvimrc"
+$gitconfig_file = "$my_home\.gitconfig"
 
 # Install vimplug support  https://github.com/junegunn/vim-plug#windows-powershell
 If ( !(Test-Path $plug_file) ) {
@@ -24,6 +26,7 @@ If ( !(Test-Path $plug_file) ) {
     )
 }
 
+# TODO  Change tests to check latest modified time and copy over if repo version is newer
 If ( !(Test-Path $vimrc_file) ) {
     Copy-Item unix-vimrc -Destination $vimrc_file
 }
