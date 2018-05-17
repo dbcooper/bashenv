@@ -19,16 +19,8 @@ fedora_rpms="
     tmux-powerline
     powerline-docs
 
-    dejavu-fonts-common
-    dejavu-sans-fonts
-    dejavu-sans-mono-fonts
-    dejavu-serif-fonts
-    gnu-free-mono-fonts
-    liberation-mono-fonts
-    liberation-sans-fonts
-    urw-base35-fonts
-    urw-base35-fonts-common
-    urw-base35-nimbus-sans-fonts
+    terminus-fonts
+    bitmap-console-fonts
 "
 
 # Repository setup, then RPMs
