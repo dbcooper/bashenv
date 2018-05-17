@@ -4,6 +4,7 @@
 
 fedora_rpms="
     ack
+    htop
 
     vim-common
     vim-enhanced
