@@ -57,7 +57,7 @@ au FileType sh                          setlocal sw=4 sts=4
 au FileType make                        setlocal sts=0 sw=8 noet
 au FileType c,cpp                       setlocal sw=8 sts=8
 au BufEnter *.tt,*.tt2,*.tt.head        setlocal sw=2 sts=2 filetype=html
-au FileType python                      setlocal sw=4 sts=4
+au FileType python                      setlocal sw=4 sts=4 autoindent
 
 " Don't highlight matching parenthesis.
 let loaded_matchparen = 1
