@@ -15,7 +15,6 @@ then
 fi
 export EDITOR
 
-#PS1='\h:$PWD\$ '; export PS1                   # set default prompt
 ulimit -c 0                                     # don't save core dumps
 
 PATH=$PATH:/sbin:/usr/sbin:$HOME/bin
@@ -102,5 +101,8 @@ function pmver () { perl -M$1 -le "print $1->VERSION"; }
 
 # su shortcut
 alias ssu='sudo su -l'
+
+# Go (language)
+GOPATH=$HOME/go
 
 # vim: sts=4 sw=4 et
