@@ -1,3 +1,1 @@
-source ~/.unix_vimrc
-
 set guifont=Powerline_Consolas:h11:cANSI:qDRAFT

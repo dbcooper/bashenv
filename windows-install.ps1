@@ -9,7 +9,9 @@ $my_home        = "$Env:HOMEDRIVE$Env:HOMEPATH"
 
 $autoload_path  = "$my_home\vimfiles\autoload"
 $plug_file      = "$autoload_path\plug.vim"
-$vimrc_file     = "$my_home\.unix_vimrc"
+# Have to put configuration all vim-plug stuff in .vimrc:
+# https://github.com/junegunn/vim-plug/issues/540#issuecomment-254580340
+$vimrc_file     = "$my_home\.vimrc"
 $gvimrc_file    = "$my_home\.gvimrc"
 $gitconfig_file = "$my_home\.gitconfig"
 

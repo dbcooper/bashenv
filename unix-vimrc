@@ -17,6 +17,7 @@ set smartcase           " capital letters are significant
 set modeline            " read vim: lines for file-specific settings
 set laststatus=2
 set foldmethod=indent
+set encoding=utf-8
 
 " For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
 " let &guioptions = substitute(&guioptions, "t", "", "g")
@@ -72,7 +73,7 @@ set tags=./tags;$HOME
 
 " Plugins (thanks Domingo!)
 " See https://github.com/junegunn/vim-plug
-call plug#begin()
+silent! call plug#begin()
 
 " On an _old_ Linux system (Fedora 14), I had to use the following b/c
 " curl was too old.  I had my github ssh key enabled, so idk if it would
@@ -92,6 +93,10 @@ Plug 'honza/vim-snippets'
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
 Plug 'noahfrederick/vim-noctu'
+
+" Stuff for Go language
+Plug 'fatih/vim-go'
+Plug 'vim-syntastic/syntastic'
 
 call plug#end()
 
@@ -137,7 +142,7 @@ if &t_Co == 8
     colorscheme noctu
     hi StatusLine   ctermfg=black   ctermbg=magenta
     hi StatusLineNC ctermfg=magenta ctermbg=black
-elseif &t_Co == 256
+elseif &t_Co == 256 || has("gui_running")
     " Assume 256 color terminal →  Powerline symbols in font
     " powerline symbols
     let g:airline_left_sep = ''
