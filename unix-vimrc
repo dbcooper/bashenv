@@ -98,6 +98,9 @@ Plug 'noahfrederick/vim-noctu'
 Plug 'fatih/vim-go'
 Plug 'vim-syntastic/syntastic'
 
+" Be quiet about Go plugin compatibility w/ old Vim versions
+let g:go_version_warning = 0
+
 call plug#end()
 
 if has("gui_running")
