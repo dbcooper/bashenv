@@ -43,3 +43,26 @@ curl -L --output $symbols_fn  https://raw.githubusercontent.com/inoyatov/monaco/
 mv $symbols_fn ~/.config/fontconfig/conf.d/
 
 fc-cache
+
+# TODO  Prompt for confirmation before doing the following (default: No)
+
+# Optional [Full] desktop setup: more applications (RPMs) and conveniences
+more_rpms="
+    gnome-tweaks
+    fonts-tweak-tool
+    tilix
+    chromium
+    gimp
+"
+
+# If want VSCode:
+#   *  Add VSCode repository
+
+# Copied directly from  https://code.visualstudio.com/docs/setup/linux#_rhel-fedora-and-centos-based-distributions
+##sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+##sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
+
+#   *  Add "code" to the to-be-installed RPM list.  Will probably need to `dnf check-update` first
+
+# Google Chrome - automate install?
+
