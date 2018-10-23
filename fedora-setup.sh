@@ -53,16 +53,23 @@ more_rpms="
     tilix
     chromium
     gimp
+    remmina
+    keepass
 "
 
 # If want VSCode:
 #   *  Add VSCode repository
-
+#
 # Copied directly from  https://code.visualstudio.com/docs/setup/linux#_rhel-fedora-and-centos-based-distributions
 ##sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
 ##sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
+#
+#   *  Add "code" RPM to the to-be-installed RPM list.  Will probably need to `dnf check-update` first
 
-#   *  Add "code" to the to-be-installed RPM list.  Will probably need to `dnf check-update` first
+# TODO  Install additional RPMs
 
 # Google Chrome - automate install?
 
+# Ensure SSH daemon is setup
+sudo systemctl start sshd.service
+sudo systemctl enable sshd.service
