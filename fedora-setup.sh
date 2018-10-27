@@ -2,11 +2,6 @@
 
 # This is intended to be run just once
 
-fedora_groups="
-    Development Tools
-    C Development Tools and Libraries
-"
-
 fedora_rpms="
     ack
     htop
@@ -35,7 +30,7 @@ fedora_rpms="
 # From  https://rpmfusion.org/Configuration#Command_Line_Setup_using_rpm
 sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
-sudo dnf group install $fedora_groups
+sudo dnf group install 'Development Tools'  'C Development Tools and Libraries'
 sudo dnf install $fedora_rpms
 
 # Install monaco font from https://github.com/inoyatov/monaco
