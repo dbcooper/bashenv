@@ -2,6 +2,11 @@
 
 # This is intended to be run just once
 
+fedora_groups="
+    Development Tools
+    C Development Tools and Libraries
+"
+
 fedora_rpms="
     ack
     htop
@@ -21,13 +26,16 @@ fedora_rpms="
 
     terminus-fonts
     bitmap-console-fonts
+
+    perl-CPAN
 "
 
-# Repository setup, then RPMs
+# Repository setup, then RPMs/RPM groups
 
 # From  https://rpmfusion.org/Configuration#Command_Line_Setup_using_rpm
 sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
+sudo dnf group install $fedora_groups
 sudo dnf install $fedora_rpms
 
 # Install monaco font from https://github.com/inoyatov/monaco
@@ -44,6 +52,11 @@ mv $symbols_fn ~/.config/fontconfig/conf.d/
 
 fc-cache
 
+# Perl setup.  Install App::cpanminus w/ cpan, then perlbrew (via cpanm)
+cpan App::cpanminus
+cpanm --sudo App::perlbrew
+
+
 # TODO  Prompt for confirmation before doing the following (default: No)
 
 # Optional [Full] desktop setup: more applications (RPMs) and conveniences
@@ -55,6 +68,7 @@ more_rpms="
     gimp
     remmina
     keepass
+    pidgin
 "
 
 # If want VSCode:
@@ -71,5 +85,5 @@ more_rpms="
 # Google Chrome - automate install?
 
 # Ensure SSH daemon is setup
-sudo systemctl start sshd.service
-sudo systemctl enable sshd.service
+#sudo systemctl start sshd.service
+#sudo systemctl enable sshd.service
