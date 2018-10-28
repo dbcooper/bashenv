@@ -5,6 +5,7 @@
 fedora_rpms="
     ack
     htop
+    cloc
 
     vim-common
     vim-enhanced
