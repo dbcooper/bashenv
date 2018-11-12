@@ -65,6 +65,15 @@ more_rpms="
     remmina
     keepass
     pidgin
+
+    i3
+    i3status
+    dmenu
+    i3lock
+    xbacklight
+    feh
+    conky
+    rxvt-unicode-256color-ml
 "
 
 # If want VSCode:

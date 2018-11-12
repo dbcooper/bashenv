@@ -115,3 +115,7 @@ fi
 mkdir -p ~/bin
 mklink $PWD/plcln.sh                ~/bin/plcln
 mklink $PWD/clean-powerline.sed     ~/bin/clean-powerline.sed
+
+# i3 and urxvt
+mklink $PWD/Xresources      ~/.Xresources
+mklink $PWD/i3-config       ~/.config/i3/config
