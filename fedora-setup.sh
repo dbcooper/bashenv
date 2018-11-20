@@ -46,6 +46,7 @@ mkdir -p ~/.config/fontconfig/conf.d/
 curl -L --output $symbols_fn  https://raw.githubusercontent.com/inoyatov/monaco/master/config/10-powerline-symbols.conf
 mv $symbols_fn ~/.config/fontconfig/conf.d/
 
+# Update system/user fontlist
 fc-cache
 
 # Perl setup.  Install App::cpanminus w/ cpan, then perlbrew (via cpanm)

@@ -104,11 +104,6 @@ then
     fi
 fi
 
-# TODO  X11/GUI desktop stuff ?
-
-# .fonts directory contents
-# Update system/user fontlist
-
 # TODO  SSH configuration?  For gateway systems only?
 
 # Common little utilities
@@ -116,6 +111,15 @@ mkdir -p ~/bin
 mklink $PWD/plcln.sh                ~/bin/plcln
 mklink $PWD/clean-powerline.sed     ~/bin/clean-powerline.sed
 
+# [Common] X11/GUI desktop stuff
+
 # i3 and urxvt
-mklink $PWD/Xresources      ~/.Xresources
-mklink $PWD/i3-config       ~/.config/i3/config
+if [ -n "`which i3 2>/dev/null`" ]
+then
+    mkdir -p ~/.config/i3
+    mklink $PWD/Xresources      ~/.Xresources
+    mklink $PWD/i3-config       ~/.config/i3/config
+fi
+
+# XXX  For .fonts directory contents, see fedora-setup
+
