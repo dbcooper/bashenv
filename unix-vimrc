@@ -45,11 +45,13 @@ noremap  <silent> <F6>    :cclose<CR>
 noremap  <silent> <F7>    :cp<CR>
 noremap  <silent> <F8>    :cn<CR>
 
-map #9 :w:!ispell %:e
+" How often do I use ispell, _really_?
+"map #9 :w:!ispell %:e
+map #9 :setlocal sts=4 sw=4 cindent
 
 " File-format specific configurations (mostly indenting)
 au BufEnter *.txt                       setlocal tw=70 sts=8 sw=8
-au FileType perl,php,javascript         setlocal sw=4 sts=4
+au FileType perl,php,javascript,java    setlocal sw=4 sts=4
 au BufEnter *.html,*.shtml              setlocal sw=2 sts=2
 au BufEnter *.tmpl                      setlocal filetype=html
 au FileType xml,html                    setlocal sw=2 sts=2
