@@ -98,6 +98,10 @@ Plug 'noahfrederick/vim-noctu'
 Plug 'fatih/vim-go'
 Plug 'vim-syntastic/syntastic'
 
+" Modeline vulnerability workaround
+" https://thehackernews.com/2019/06/linux-vim-vulnerability.html
+Plug 'ciaranm/securemodelines'
+
 " Be quiet about Go plugin compatibility w/ old Vim versions
 let g:go_version_warning = 0
 
