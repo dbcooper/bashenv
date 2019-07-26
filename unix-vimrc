@@ -11,6 +11,8 @@ set showmatch           " show the previous matching parenthesis
 set expandtab
 set sts=8 sw=8          " default tab and shift widths
 set visualbell          " stop beeping at me!
+set noeb vb t_vb=
+set belloff=all
 set fileformat=unix
 set ignorecase          " case doesn't matter
 set smartcase           " capital letters are significant
