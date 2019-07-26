@@ -6,6 +6,7 @@
 	st = status
 	co = checkout
         br = branch
+	yeet = push
 [core]
 	excludesfile = ~/.gitexcludes
 [color]
