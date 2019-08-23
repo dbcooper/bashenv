@@ -12,7 +12,7 @@ set expandtab
 set sts=8 sw=8          " default tab and shift widths
 set visualbell          " stop beeping at me!
 set noeb vb t_vb=
-set belloff=all
+"set belloff=all        " Not supported by older Vim? (e.g., CentOS 7/Vim 7.4)
 set fileformat=unix
 set ignorecase          " case doesn't matter
 set smartcase           " capital letters are significant
@@ -99,7 +99,7 @@ Plug 'tomtom/tlib_vim'
 Plug 'noahfrederick/vim-noctu'
 
 " Stuff for Go language
-Plug 'fatih/vim-go'
+"Plug 'fatih/vim-go'
 Plug 'vim-syntastic/syntastic'
 
 " Modeline vulnerability workaround
