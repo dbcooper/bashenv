@@ -105,4 +105,12 @@ alias ssu='sudo su -l'
 # Go (language)
 GOPATH=$HOME/go
 
+# Running nvim inside tmux crashes tmux client, at least CentOS/RHEL
+# E.g., https://github.com/tmux/tmux/issues/1264
+IS_RHEL=`grep -P '^(?:CentOS|Red Hat Enterprise Linux)' /etc/redhat-release 2>/dev/null`
+if [[ "$IS_RHEL" && "$TMUX" && `alias vi | grep -oe "'\(\w\+\)'$"` == "'nvim'" ]]
+then
+    alias vi='vim'
+fi
+
 # vim: sts=4 sw=4 et
