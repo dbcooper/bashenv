@@ -14,6 +14,7 @@ $plug_file      = "$autoload_path\plug.vim"
 $vimrc_file     = "$my_home\.vimrc"
 $gvimrc_file    = "$my_home\.gvimrc"
 $gitconfig_file = "$my_home\.gitconfig"
+$bashrc_file    = "$my_home\.bashrc"
 
 # Install vimplug support  https://github.com/junegunn/vim-plug#windows-powershell
 If ( !(Test-Path $plug_file) ) {
@@ -29,6 +30,10 @@ If ( !(Test-Path $plug_file) ) {
 }
 
 # TODO  Change tests to check latest modified time and copy over if repo version is newer
+If ( !(Test-Path $bashrc_file) ) {
+    Copy-Item windows-bashrc -Destination $bashrc_file
+}
+
 If ( !(Test-Path $vimrc_file) ) {
     Copy-Item unix-vimrc -Destination $vimrc_file
 }
@@ -42,4 +47,3 @@ Write-Output "You'll need to start gvim.exe and run :PlugInstall from git bash, 
 If ( !(Test-Path $gitconfig_file) ) {
     Copy-Item gitconfig -Destination $gitconfig_file
 }
-

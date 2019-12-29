@@ -1,0 +1,19 @@
+# .bashrc - environment configuration for git bash under Windows
+
+MINGW64_TEST=`uname -ar | grep -i '^MINGW64_NT-[0-9]\+'`
+
+if [ -z "$MINGW64_TEST" ]
+then
+    echo "?you don't appear to be running git bash under Windows...  Skipping environment configuration"
+    read foo
+else
+    set -o vi
+    export EDITOR='gvim.exe'
+
+    alias vi='gvim.exe'
+    alias more=less                                 # less is more
+    alias ls='ls -FC --color=auto'                  # add options to ls(1)
+    alias cls='clear'
+fi
+
+# vim: sts=4 sw=4 et
