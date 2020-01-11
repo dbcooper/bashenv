@@ -29,6 +29,8 @@ If ( !(Test-Path $plug_file) ) {
     )
 }
 
+# TODO  Install vimplug for git bash's vim ~/.vim/autoload/plug.vim
+
 # TODO  Change tests to check latest modified time and copy over if repo version is newer
 If ( !(Test-Path $bashrc_file) ) {
     Copy-Item windows-bashrc -Destination $bashrc_file

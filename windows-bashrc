@@ -16,4 +16,9 @@ else
     alias cls='clear'
 fi
 
+if [ "$TERM" == 'xterm' ]
+then
+    export TERM=xterm-256color
+fi
+
 # vim: sts=4 sw=4 et
