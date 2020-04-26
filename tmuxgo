@@ -7,7 +7,9 @@ tmux -2 new-session -d -s $SESSION
 tmux rename-window -t $SESSION:1 vim
 tmux split-window -v
 tmux select-pane -t 0
-tmux resize-pane -D 15
+tmux resize-pane -D 50
+tmux select-pane -t 1
+tmux resize-pane -U 6
 tmux new-window -t $SESSION -a -n git
 tmux split-window -h
 tmux select-pane -t 0
