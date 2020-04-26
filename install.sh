@@ -111,6 +111,7 @@ mkdir -p ~/bin
 mklink $PWD/plcln.sh                ~/bin/plcln
 mklink $PWD/clean-powerline.sed     ~/bin/clean-powerline.sed
 mklink $PWD/moshkey.sh              ~/bin/moshkey
+mklink $PWD/tmuxgo                  ~/bin/tmuxgo
 
 # [Common] X11/GUI desktop stuff
 
