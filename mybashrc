@@ -49,7 +49,7 @@ fi
 
 # From https://fedoramagazine.org/add-power-terminal-powerline/
 pd_exe=`which powerline-daemon 2>/dev/null`
-if [[ "$pd_exe" && -f $pd_exe && -z "$SIMPLE_CONSOLE" ]]
+if [[ "$pd_exe" && -f $pd_exe && -z "$SIMPLE_CONSOLE" && -z "$TMUX" ]]
 then
     powerline-daemon -q
     POWERLINE_BASH_CONTINUATION=1
