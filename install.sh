@@ -9,18 +9,25 @@ source ./install-functions
 
 # Optional: powerline, neovim
 
-# Locate system git bash completion script (if installed)
-git_completion=/usr/share/bash-completion/completions/git
+# Assume if the RPM program is installed, it's RHEL/CentOS/Fedora
+HAS_RPM=`which rpm`
+
+# System's git bash completion scripts (if installed)
+git_completion=
 git_prompt=
-if [ ! -r $git_completion ]
+if [ -n "`which git 2>/dev/null`" ]
 then
-    if [ -n "`which git 2>/dev/null`" ]
+    if [ -n "$HAS_RPM" ]
     then
-        # Assuming RHEL-based distro, path will vary
-        git_completion=`rpm -q -l git | grep -i 'git-completion\.bash'`
-        git_prompt=`rpm -q -l git | grep -i '/usr/share/doc/.*/git-prompt\.sh'`
+        # On redhat-based distros, path will vary
+        git_completion=`rpm -q -l git | grep -i 'git-completion\.bash$'`
+        git_prompt=`rpm -q -l git git-core | grep -i 'git-prompt\.sh$'`
+    elif [ -r '/usr/share/bash-completion/completions/git' ]
+    then
+        git_completion='/usr/share/bash-completion/completions/git'
+    # TODO  Add test/FQPN resolution for Debian-based distributions
     else
-        git_completion=
+        echo "?don't know how to locate Bash helper scripts for git on this OS"
     fi
 fi
 
