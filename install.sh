@@ -53,6 +53,17 @@ then
     mklink $git_prompt ~/.git-prompt.sh
 fi
 
+# Determine tmux version, use appropriate syntax
+tmux_conf=$PWD/tmux.conf
+if [ -n "`which tmux 2>/dev/null`" ]
+then
+    TMUX_MAJOR=`tmux -V | sed -r 's/(^tmux |\.[0-9]+.*$)//g;'`
+    if [ "$TMUX_MAJOR" -gt 1 ]
+    then
+        tmux_conf=$PWD/tmux-2.conf
+    fi
+fi
+
 mklink $PWD/inputrc             ~/.inputrc
 mklink $PWD/mybashrc            ~/.mybashrc
 mklink $PWD/gitconfig           ~/.gitconfig
@@ -60,7 +71,7 @@ mklink $PWD/gitexcludes         ~/.gitexcludes
 mklink $PWD/vimrc               ~/.vimrc
 mklink $PWD/unix-vimrc          ~/.unix_vimrc
 mklink $PWD/gvimrc              ~/.gvimrc
-mklink $PWD/tmux.conf           ~/.tmux.conf
+mklink $tmux_conf               ~/.tmux.conf
 
 # Powerline
 if [ -n "`which powerline 2>/dev/null`" ]
