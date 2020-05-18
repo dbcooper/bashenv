@@ -35,17 +35,11 @@ then
     SIMPLE_CONSOLE='y'
 fi
 
-# Pmwiki editor setup
-#alias pmwe='pmwe -g -m ~/.pmwemap -p ~/.pmwepass'
-
 # Stupid Ubuntu
 if [ -x /usr/bin/ack-grep ]
 then
     alias ack='ack-grep'
 fi
-
-# JtR
-#export JOHN=$HOME/builds/john-1.7.6/run
 
 # From https://fedoramagazine.org/add-power-terminal-powerline/
 pd_exe=`which powerline-daemon 2>/dev/null`
@@ -73,12 +67,6 @@ else
     export PS1='\h:\w$ '
 fi
 
-# For Skype?  http://developer.skype.com/LinuxSkype
-#export QT_PLUGIN_PATH=/usr/lib32/qt4/plugins skype
-
-# Mangler
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
-
 # Pharosdb
 export PDBROOT=$HOME/git/pharosdb
 
@@ -89,21 +77,11 @@ then
     alias gvim='gvim -U ~/.gvimrc-inconsolata'
 fi
 
-# Node.js  https://github.com/nodejs/help/wiki/Installation
-export NODEJS_HOME=/usr/local/nodejs/node-v6.9.1
-PATH=$PATH:$NODEJS_HOME/bin
-
-# CasperJS
-PATH=$PATH:$HOME/node_modules/casperjs/bin
-
 # From _Perl_Hacks_, p65
 function pmver () { perl -M$1 -le "print $1->VERSION"; }
 
 # su shortcut
 alias ssu='sudo su -l'
-
-# Go (language)
-GOPATH=$HOME/go
 
 # Running nvim inside tmux crashes tmux client, at least CentOS/RHEL
 # E.g., https://github.com/tmux/tmux/issues/1264
