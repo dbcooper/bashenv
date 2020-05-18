@@ -141,5 +141,8 @@ then
     mklink $PWD/i3-config       ~/.config/i3/config
 fi
 
+# Local Bash environment
+[[ -e bashrc.local ]] && mklink $PWD/bashrc.local ~/.bashrc.local
+
 # XXX  For .fonts directory contents, see fedora-setup
 
