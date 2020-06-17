@@ -15,6 +15,7 @@ fedora_rpms="
     vim-taglist
     vim-X11
     neovim
+    python3-neovim
 
     powerline
     powerline-fonts
