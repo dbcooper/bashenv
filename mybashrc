@@ -89,6 +89,7 @@ IS_RHEL=`grep -P '^(?:CentOS|Red Hat Enterprise Linux)' /etc/redhat-release 2>/d
 if [[ "$IS_RHEL" && "$TMUX" && `alias vi | grep -oe "'\(\w\+\)'$"` == "'nvim'" ]]
 then
     alias vi='vim'
+    export EDITOR=/usr/bin/vim
 fi
 
 # Local machine-specific Bash environment setup--if any
