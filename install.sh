@@ -122,7 +122,9 @@ then
     fi
 fi
 
-# TODO  SSH configuration?  For gateway systems only?
+# SSH configuration
+mkdir -p ~/.ssh
+mklink $PWD/ssh-rc                  ~/.ssh/rc
 
 # Common little utilities
 mkdir -p ~/bin
