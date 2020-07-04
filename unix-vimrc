@@ -22,7 +22,14 @@ set foldmethod=indent
 set encoding=utf-8
 
 " For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
-" let &guioptions = substitute(&guioptions, "t", "", "g")
+if has('win32') || has('win64')
+    let &guioptions = substitute(&guioptions, "t", "", "g")
+    " https://stackoverflow.com/a/43245241/1502174
+    set runtimepath-=~/vimfiles
+    set runtimepath^=~/.vim
+    set runtimepath-=~/vimfiles/after
+    set runtimepath+=~/.vim/after
+endif
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
