@@ -7,7 +7,7 @@
 # Allow for HOMEDRIVE, HOMEPATH changes due to network mount/AD directive
 $my_home        = "$Env:HOMEDRIVE$Env:HOMEPATH"
 
-$autoload_path  = "$my_home\vimfiles\autoload"
+$autoload_path  = "$my_home\.vim\autoload"
 $plug_file      = "$autoload_path\plug.vim"
 # Have to put configuration all vim-plug stuff in .vimrc:
 # https://github.com/junegunn/vim-plug/issues/540#issuecomment-254580340
