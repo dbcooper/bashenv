@@ -1,4 +1,4 @@
-tl;dr: another collection of personalized dotfiles
+*tl;dr*: another collection of personalized dotfiles
 
 I use and develop on CentOS/RHEL, Fedora, Ubuntu/Debian--mostly
 headless--and sometimes Windows computers.  This is a collection of
