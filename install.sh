@@ -21,7 +21,7 @@ then
     then
         # On redhat-based distros, path will vary
         git_completion=`rpm -q -l git | grep -i 'git-completion\.bash$'`
-        git_prompt=`rpm -q -l git git-core | grep -i 'git-prompt\.sh$'`
+        git_prompt=`rpm -q -l git git-core | grep -i 'git-prompt\.sh$' | head -1`
     elif [ -r '/usr/share/bash-completion/completions/git' ]
     then
         git_completion='/usr/share/bash-completion/completions/git'
