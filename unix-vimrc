@@ -77,6 +77,9 @@ au FileType python                      setlocal sw=4 sts=4 autoindent
 " Don't highlight matching parenthesis.
 let loaded_matchparen = 1
 
+" Why doesn't oo digraph (bullet) match documentation?
+digraph oo 8226
+
 " Configuration for automatic indenting (# annoyance)
 if has("autocmd")
     filetype plugin on
