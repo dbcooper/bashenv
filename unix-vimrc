@@ -179,4 +179,7 @@ elseif &t_Co == 256 || has("gui_running")
     let g:airline_symbols.linenr = ''
 endif
 
+" Snipmate parser deprecation
+let g:snipMate = { 'snippet_version' : 1 }
+
 " vim: sw=4 sts=4 et
