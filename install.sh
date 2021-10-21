@@ -132,6 +132,7 @@ mklink $PWD/plcln.sh                ~/bin/plcln
 mklink $PWD/clean-powerline.sed     ~/bin/clean-powerline.sed
 mklink $PWD/moshkey.sh              ~/bin/moshkey
 mklink $PWD/tmuxgo                  ~/bin/tmuxgo
+mklink $PWD/upd8-sas.sh             ~/bin/upd8-sas
 
 # [Common] X11/GUI desktop stuff
 
