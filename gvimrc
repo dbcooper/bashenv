@@ -6,8 +6,7 @@ source ~/.unix_vimrc
 
 map #9 :set guifont=Monaco\ for\ Powerline\ 14
 "set guifont=Monospace\ 10
-"set guifont=Monaco\ 10
-set guifont=Monaco\ 13
+set guifont=Monaco\ 10
 
 " I'm not sure this does anything?!
 set t_vb="|20f"
