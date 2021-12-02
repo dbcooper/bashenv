@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Append file (named in $addendum) to $target (once)
 #
