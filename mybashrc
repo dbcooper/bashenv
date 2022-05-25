@@ -67,8 +67,8 @@ else
     export PS1='\h:\w$ '
 fi
 
-# Pharosdb
-export PDBROOT=$HOME/git/pharosdb
+# [Old] pharosdb variable, but might be utilized in places by pharos?
+export PDBROOT=$HOME/git/pharos
 
 # Alternate shell stuff
 if [ "$INCONSOLATA" = 'true' ]
