@@ -64,6 +64,7 @@ then
     fi
 fi
 
+mklink $PWD/editrc              ~/.editrc
 mklink $PWD/inputrc             ~/.inputrc
 mklink $PWD/mybashrc            ~/.mybashrc
 mklink $PWD/gitconfig           ~/.gitconfig
