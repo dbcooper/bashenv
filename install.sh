@@ -112,7 +112,9 @@ then
     echo "Downloading vim-plug for Vim"
     curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
-if [ -n "`which nvim 2>/dev/null`" ]
+
+HAS_NVIM=$(which nvim 2>/dev/null)
+if [[ $HAS_NVIM ]]
 then
     mkdir -p ~/.config/nvim
     mklink $PWD/unix-vimrc  ~/.config/nvim/init.vim
@@ -122,6 +124,19 @@ then
         curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     fi
 fi
+
+# vi Filetype plugins
+mkdir -p ~/.vim/ftplugin
+[[ $HAS_NVIM ]] && mkdir -p ~/.config/nvim/ftplugin
+for fn in $PWD/ftplugin/*.vim
+do
+    based=$(basename $fn)
+    mklink $fn                      ~/.vim/ftplugin/$based
+    if [[ $HAS_NVIM ]]
+    then
+        mklink $fn                  ~/.config/nvim/ftplugin/$based
+    fi
+done
 
 # SSH configuration
 mkdir -p ~/.ssh
