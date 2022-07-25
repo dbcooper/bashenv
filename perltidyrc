@@ -1,0 +1,3 @@
+# .perltidyrc configuration file
+
+--fixed-position-side-comment=41

@@ -152,6 +152,9 @@ mklink $PWD/upd8-sas.sh             ~/bin/upd8-sas
 
 # [Common] X11/GUI desktop stuff
 
+# Perl programming stuff
+mklink $PWD/perltidyrc              ~/.perltidyrc
+
 # i3 and urxvt
 if [ -n "`which i3 2>/dev/null`" ]
 then
