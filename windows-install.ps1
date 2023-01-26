@@ -39,25 +39,67 @@ If ( !(Test-Path $plug_file) ) {
 If ( !(Test-Path $bashrc_file) ) {
     Copy-Item windows-bashrc -Destination $bashrc_file
 }
+Else {
+    # Only copy over file if newer
+    xcopy windows-bashrc $bashrc_file /D
+}
 
 # Git bash vim setup
 If ( !(Test-Path $vimrc_file) ) {
     Copy-Item unix-vimrc -Destination $vimrc_file
 }
+Else {
+    # Only copy over file if newer?
+    xcopy unix-vimrc $vimrc_file /D
+}
+
 If ( !(Test-Path $gvimrc_file) ) {
     Copy-Item windows-gvimrc -Destination $gvimrc_file
+}
+Else {
+    # Only copy over file if newer?
+    xcopy windows-gvimrc $gvimrc_file /D
 }
 
 # Windows-specific gvim file setup
 If ( !(Test-Path $win_vimrc_file) ) {
     Copy-Item unix-vimrc -Destination $win_vimrc_file
 }
+Else {
+    # Only copy over file if newer?
+    xcopy unix-vimrc $win_vimrc_file /D
+}
+
 If ( !(Test-Path $win_gvimrc_file) ) {
     Copy-Item windows-gvimrc -Destination $win_gvimrc_file
 }
+Else {
+    # Only copy over file if newer?
+    xcopy windows-gvimrc $win_gvimrc_file /D
+}
 
-Write-Output "In the git bash shell, start vim and run :PlugInstall.  After that, plugins _should_ work properly in Windows gvim as well."
+Write-Host @"
+
+In the git bash shell, start vim and run :PlugInstall.  After that, plugins _should_ work properly in Windows gvim as well.
+
+If you haven't already, you will need to install Python on the system for proper Vim (plugin) support.  You will need to install the appropriate Python version for whatever version gVim you're using was compiled against.
+
+E.g., gvim 8.0 32-bit was compiled against Python 3.5 so I did the following to get it to work:
+  - I _think_ only the major and minor version number matter (i.e., ignore patch)
+  - Download Python 3.5.4rc1 32-bit, < https://www.python.org/downloads/release/python-354rc1/ >
+  - Install Python 3.5 in c:\Python\Python35-32   # Idk if directory matters
+  - Copy python35.dll to the gvim 8.0 install directory, C:\Program Files (x86)\Vim\vim80
+
+FMI
+  - https://stackoverflow.com/a/17963884
+  - https://www.reddit.com/r/vim/comments/671c5u/vim_python_install_help/
+
+"@
 
 If ( !(Test-Path $gitconfig_file) ) {
     Copy-Item gitconfig -Destination $gitconfig_file
+}
+Else {
+    # Only copy over file if newer?
+    xcopy gitconfig $gitconfig_file /D
 }
