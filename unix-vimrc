@@ -121,7 +121,7 @@ Plug 'SirVer/ultisnips'
 " Code snippets
 Plug 'honza/vim-snippets'
 
-# Other stuff
+" Other stuff
 Plug 'vitalk/vim-simple-todo'
 Plug 'vim-vdebug/vdebug'
 
