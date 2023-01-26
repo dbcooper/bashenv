@@ -11,7 +11,8 @@ set showmatch           " show the previous matching parenthesis
 set expandtab
 set sts=8 sw=8          " default tab and shift widths
 set visualbell          " stop beeping at me!
-set noeb vb t_vb=
+set noeb
+set t_vb=
 "set belloff=all        " Not supported by older Vim? (e.g., CentOS 7/Vim 7.4)
 set fileformat=unix
 set ignorecase          " case doesn't matter
@@ -20,6 +21,7 @@ set modeline            " read vim: lines for file-specific settings
 set laststatus=2
 set foldmethod=indent
 set encoding=utf-8
+set number
 
 " For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
 if has('win32') || has('win64')
@@ -99,21 +101,34 @@ silent! call plug#begin()
 " https://github.com/junegunn/vim-plug/wiki/faq#whats-the-deal-with-git-in-the-url
 "let g:plug_url_format = 'ssh://git@github.com/%s'
 
+" Cooler modeline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'tomasr/molokai'
+
+" File navigator
 Plug 'scrooloose/nerdtree'
+
+" Idk, 256 color terminal support?
 Plug 'michalbachowski/vim-wombat256mod'
 Plug 'WolfgangMehner/perl-support'
-Plug 'garbas/vim-snipmate'
-Plug 'honza/vim-snippets'
-Plug 'MarcWeber/vim-addon-mw-utils'
-Plug 'tomtom/tlib_vim'
+
+" Color schemes
 Plug 'noahfrederick/vim-noctu'
+Plug 'tomasr/molokai'
+
+" Snipping tool engine
+Plug 'SirVer/ultisnips'
+" Code snippets
+Plug 'honza/vim-snippets'
+
+# Other stuff
 Plug 'vitalk/vim-simple-todo'
+Plug 'vim-vdebug/vdebug'
 
 " Stuff for Go language
 "Plug 'fatih/vim-go'
+
+" Syntax checking (deprecated?)
 Plug 'vim-syntastic/syntastic'
 
 " Modeline vulnerability workaround
@@ -178,8 +193,5 @@ elseif &t_Co == 256 || has("gui_running")
     let g:airline_symbols.readonly = ''
     let g:airline_symbols.linenr = ''
 endif
-
-" Snipmate parser deprecation
-let g:snipMate = { 'snippet_version' : 1 }
 
 " vim: sw=4 sts=4 et
