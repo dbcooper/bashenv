@@ -77,8 +77,8 @@ then
     alias gvim='gvim -U ~/.gvimrc-inconsolata'
 fi
 
-# From _Perl_Hacks_, p65
-function pmver () { perl -M$1 -le "print $1->VERSION"; }
+# From https://metacpan.org/dist/Catalyst-Manual/view/lib/Catalyst/Manual/Tutorial/07_Debugging.pod#DEBUGGING-MODULES-FROM-CPAN
+alias pmver="perl -le '\$m = shift; eval qq(require \$m) or die qq(module \"\$m\" is not installed\\n); print \$m->VERSION'"
 
 # su shortcut
 alias ssu='sudo su -l'
