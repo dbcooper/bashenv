@@ -64,7 +64,7 @@ map #9 :setlocal sts=4 sw=4 cindent
 let g:simple_todo_map_insert_mode_keys = 0
 
 " File-format specific configurations (mostly indenting)
-au BufEnter *.txt                       setlocal tw=70 sts=8 sw=8
+au BufRead  *.txt                       setlocal tw=70 sts=8 sw=8
 au FileType perl,php,javascript,java    setlocal sw=4 sts=4
 au BufEnter *.html,*.shtml              setlocal sw=2 sts=2
 au BufEnter *.tmpl                      setlocal filetype=html
@@ -73,7 +73,7 @@ au FileType css                         setlocal sw=4 sts=4
 au FileType sh                          setlocal sw=4 sts=4
 au FileType make                        setlocal sts=0 sw=8 noet
 au FileType c,cpp                       setlocal sw=8 sts=8
-au BufEnter *.tt,*.tt2,*.tt.head        setlocal sw=2 sts=2 filetype=html
+au BufRead  *.tt,*.tt2,*.tt.head        setlocal sw=2 sts=2 filetype=html
 au FileType python                      setlocal sw=4 sts=4 autoindent
 
 " Don't highlight matching parenthesis.
