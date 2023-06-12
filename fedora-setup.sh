@@ -23,7 +23,7 @@ fedora_rpms="
     powerline-docs
 
     terminus-fonts
-    bitmap-console-fonts
+    cascadia-code-pl-fonts
 
     perl-CPAN
 "
@@ -66,17 +66,14 @@ more_rpms="
     chromium
     gimp
     remmina
-    keepass
-    pidgin
+    keepassxc
 
     i3
     i3status
     dmenu
     i3lock
-    xbacklight
     feh
     conky
-    rxvt-unicode-256color-ml
 "
 
 # If want VSCode:
@@ -92,6 +89,9 @@ more_rpms="
 
 # Google Chrome - automate install?
 
+# TODO  Ask/confirm, re: need to SSH into box
 # Ensure SSH daemon is setup
 #sudo systemctl start sshd.service
 #sudo systemctl enable sshd.service
+
+# TODO  GUI keyboard shortcuts for terminal(s)
