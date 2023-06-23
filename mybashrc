@@ -92,6 +92,9 @@ then
     export EDITOR=/usr/bin/vim
 fi
 
+# Node/npm development git shortcut, ignore package-lock.json w/o touching .gitignore
+alias nodediff="git diff -- . ':(exclude)*/package-lock.json'"
+
 # XXX  Tilix VTE (Virtual Terminal Emulator) configuration thing breaks [my] powerline, just set to run as login shell
 # https://gnunn1.github.io/tilix-web/manual/vteconfig/
 
