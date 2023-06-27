@@ -93,7 +93,15 @@ then
 fi
 
 # Node/npm development git shortcut, ignore package-lock.json w/o touching .gitignore
-alias nodediff="git diff -- . ':(exclude)*/package-lock.json'"
+nodediff() {
+    # Idk how to have a single command support pre -- arguments/no arguments ¯\_(ツ)_/¯
+    if [[ -z "$1" ]]
+    then
+        git diff -- . ':(exclude)*/package-lock.json' ':(exclude)package-lock.json'
+    else
+        git diff "$*" -- . ':(exclude)*/package-lock.json' ':(exclude)package-lock.json'
+    fi
+}
 
 # XXX  Tilix VTE (Virtual Terminal Emulator) configuration thing breaks [my] powerline, just set to run as login shell
 # https://gnunn1.github.io/tilix-web/manual/vteconfig/
