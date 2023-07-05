@@ -59,6 +59,7 @@ cpanm --sudo App::perlbrew
 # TODO  Prompt for confirmation before doing the following (default: No)
 
 # Optional [Full] desktop setup: more applications (RPMs) and conveniences
+# XXX  As of Fedora 38, qqc2-desktop-style is required by ksnip but not included in the existing RPM?
 more_rpms="
     gnome-tweaks
     fonts-tweak-tool
@@ -67,6 +68,8 @@ more_rpms="
     gimp
     remmina
     keepassxc
+    ksnip
+    qqc2-desktop-style
 
     i3
     i3status
