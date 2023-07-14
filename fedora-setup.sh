@@ -48,6 +48,8 @@ mkdir -p ~/.config/fontconfig/conf.d/
 curl -L --output $symbols_fn  https://raw.githubusercontent.com/inoyatov/monaco/master/config/10-powerline-symbols.conf
 mv $symbols_fn ~/.config/fontconfig/conf.d/
 
+# TODO  https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/CodeNewRoman ?
+
 # Update system/user fontlist
 fc-cache
 
