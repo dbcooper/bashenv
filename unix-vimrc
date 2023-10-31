@@ -130,6 +130,9 @@ Plug 'vitalk/vim-simple-todo'
 " Stuff for Go language
 "Plug 'fatih/vim-go'
 
+" Be quiet about Go plugin compatibility w/ old Vim versions
+let g:go_version_warning = 0
+
 " Syntax checking (deprecated?)
 Plug 'vim-syntastic/syntastic'
 
@@ -137,8 +140,19 @@ Plug 'vim-syntastic/syntastic'
 " https://thehackernews.com/2019/06/linux-vim-vulnerability.html
 Plug 'ciaranm/securemodelines'
 
-" Be quiet about Go plugin compatibility w/ old Vim versions
-let g:go_version_warning = 0
+" Enable completion where available.
+" This setting must be set before ALE is loaded.
+"
+" You should not turn this setting on if you wish to use ALE as a completion
+" source for other completion plugins, like Deoplete.
+let g:ale_completion_enabled=1
+
+" [Other] ALE configuration
+set omnifunc=ale#completion#OmniFunc
+let g:airline#extensions#ale#enabled = 1
+
+" Vim + LSP/Linting (ALE)?
+"Plug 'dense-analysis/ale'
 
 call plug#end()
 
@@ -195,5 +209,19 @@ elseif &t_Co == 256 || has("gui_running")
     let g:airline_symbols.readonly = ''
     let g:airline_symbols.linenr = ''
 endif
+
+" Map to markdown-friendly simple TODO [pluging] keys instead of default
+" Have to prefix each un/map command to wait b/c plugin mappings _aren't_ defined yet
+" https://vi.stackexchange.com/a/785
+:augroup RemapTODOKeys
+    " Unmap defaults
+    au VimEnter * nunmap <Leader>i
+    au VimEnter * nunmap <Leader>I
+    au VimEnter * vunmap <Leader>I
+    " Map to markdown versions
+    au VimEnter * nmap <Leader>i <Plug>(simple-todo-new-list-item)
+    au VimEnter * nmap <Leader>I <Plug>(simple-todo-new-list-item-start-of-line)
+    au VimEnter * vmap <Leader>I <Plug>(simple-todo-new-list-item-start-of-line)
+:augroup END
 
 " vim: sw=4 sts=4 et
