@@ -118,8 +118,18 @@ Plug 'WolfgangMehner/perl-support'
 Plug 'noahfrederick/vim-noctu'
 Plug 'tomasr/molokai'
 
-" Snipping tool engine
-Plug 'SirVer/ultisnips'
+" Ultisnips is perferred but requries nvim (unsure what version) or Vim 8.0+.  I still have to deal w/ RHEL/CentOS 7 boxes.
+if version < 800
+    " XXX  Dunno why Neovim 0.3.0 doesn't have version < 800 this but for now I don't care.
+    let g:snipMate = { 'snippet_version' : 1 }
+    Plug 'MarcWeber/vim-addon-mw-utils'
+    Plug 'tomtom/tlib_vim'
+    Plug 'garbas/vim-snipmate'
+else
+    " Snipping tool engine
+    Plug 'SirVer/ultisnips'
+endif
+
 " Code snippets
 Plug 'honza/vim-snippets'
 
