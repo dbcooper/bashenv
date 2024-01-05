@@ -38,9 +38,6 @@ fedora_rpms="
     tmux-powerline
     powerline-docs
 
-    terminus-fonts
-    cascadia-code-pl-fonts
-
     perl-CPAN
 "
 
@@ -65,6 +62,7 @@ curl -L --output $symbols_fn  https://raw.githubusercontent.com/inoyatov/monaco/
 mv $symbols_fn ~/.config/fontconfig/conf.d/
 
 # TODO  https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/CodeNewRoman ?
+# TODO  https://kabeech.github.io/serious-sans/ , specifically https://kabeech.github.io/serious-sans/SeriousSans/otf/SeriousSansNerd.otf
 
 # Update system/user fontlist
 fc-cache
@@ -81,6 +79,7 @@ more_rpms="
 
     gnome-tweaks
     fonts-tweak-tool
+    kitty
     tilix
     chromium
     gimp
