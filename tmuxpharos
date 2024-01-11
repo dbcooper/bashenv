@@ -4,15 +4,15 @@
 
 SESSION='pharos-dev'
 # Assume first perl[brew] version listed is desired
-PB_VER=`perlbrew list | head -1`
+[[ -z "$PHAROS_PB_VER" ]] && PHAROS_PB_VER=`perlbrew list | tail -1`
 PHAROS_PATH="$HOME/git/pharos"
 
 # Development server
-tmux new-session -d -s $SESSION -n prho "cd $PHAROS_PATH; perlbrew use $PB_VER;"
+tmux new-session -d -s $SESSION -n prho "cd $PHAROS_PATH; perlbrew use $PHAROS_PB_VER;"
 # I'm having trouble getting source [bash command] to work w/ other means
 tmux send-keys -t prho 'source bin/tools/setenv.sh' Enter 'prho' Enter
 tmux set-option -q -t $SESSION status-left '#[fg=brightyellow,bg=black]ᴩʜᴀʀᴏꜱ✓'
 
 # Pharos repository navigation/miscellaneous w/ perlbrew and environment
-tmux new-window -t $SESSION -a -n pharos "cd $PHAROS_PATH; perlbrew use $PB_VER;"
+tmux new-window -t $SESSION -a -n pharos "cd $PHAROS_PATH; perlbrew use $PHAROS_PB_VER;"
 tmux send-keys -t pharos 'FORCE_PHAROS=y source bin/tools/setenv.sh' Enter
