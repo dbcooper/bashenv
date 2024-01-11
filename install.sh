@@ -57,7 +57,7 @@ fi
 tmux_conf=$PWD/tmux.conf
 if [ -n "`which tmux 2>/dev/null`" ]
 then
-    TMUX_MAJOR=`tmux -V | sed -r 's/(^tmux |\.[0-9]+.*$)//g;'`
+    TMUX_MAJOR=$(tmux -V | sed -r 's/(^tmux |next-|\.[0-9]+.*$)//g;')
     if [ "$TMUX_MAJOR" -gt 1 ]
     then
         tmux_conf=$PWD/tmux-2.conf
