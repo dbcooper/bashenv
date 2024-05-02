@@ -4,11 +4,13 @@
 SHELL=/bin/bash; export SHELL                   # default shell is /bin/bash
 
 # default EDITOR is vi
-if [ -x /usr/bin/nvim ]
+# idk why you'd use a slurm module for interactive editors 🙄
+NVIM_EXE=$(which nvim 2>/dev/null)
+if [[ -n "$NVIM_EXE" && -x "$NVIM_EXE" ]]
 then
-    EDITOR=/usr/bin/nvim
+    EDITOR="$NVIM_EXE"
     alias vi='nvim'
-elif [ -x /usr/bin/vim ]
+elif [[ -x /usr/bin/vim ]]
 then
     EDITOR=/usr/bin/vim
     alias vi='vim'
