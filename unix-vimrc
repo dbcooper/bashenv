@@ -234,4 +234,14 @@ endif
     au VimEnter * vmap <Leader>I <Plug>(simple-todo-new-list-item-start-of-line)
 :augroup END
 
+" Adapted from https://superuser.com/a/369823
+" Try to load editor-specific files (e.g., Neovim vs. OG Vim), if exists
+if has('nvim')
+    try
+        source ~/.nvimrc
+    catch
+        " No such file? No problem; just ignore it.
+    endtry
+endif
+
 " vim: sw=4 sts=4 et

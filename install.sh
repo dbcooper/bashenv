@@ -72,6 +72,7 @@ mklink $PWD/gitexcludes         ~/.gitexcludes
 mklink $PWD/vimrc               ~/.vimrc
 mklink $PWD/unix-vimrc          ~/.unix_vimrc
 mklink $PWD/gvimrc              ~/.gvimrc
+mklink $PWD/nvimrc              ~/.nvimrc
 mklink $tmux_conf               ~/.tmux.conf
 
 # Powerline
