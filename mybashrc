@@ -85,13 +85,18 @@ alias pmver="perl -le '\$m = shift; eval qq(require \$m) or die qq(module \"\$m\
 # su shortcut
 alias ssu='sudo su -l'
 
-# Running nvim inside tmux crashes tmux client, at least CentOS/RHEL
+# Running nvim inside tmux crashes tmux client, at least CentOS/RHEL 7
 # E.g., https://github.com/tmux/tmux/issues/1264
 IS_RHEL=`grep -P '^(?:CentOS|Red Hat Enterprise Linux)' /etc/redhat-release 2>/dev/null`
 if [[ "$IS_RHEL" && "$TMUX" && `alias vi | grep -oe "'\(\w\+\)'$"` == "'nvim'" ]]
 then
-    alias vi='vim'
-    export EDITOR=/usr/bin/vim
+    # Get RHEL/CentOS major version (e.g., 7, 8, 9)
+    RHEL_MAJOR=$(awk -F'=' '/VERSION_ID/{ gsub(/"/,""); gsub(/\.[0-9.]+/,""); print $2; }' /etc/os-release)
+    if [[ "$RHEL_MAJOR" -le 7 ]]
+    then
+        alias vi='vim'
+        export EDITOR=/usr/bin/vim
+    fi
 fi
 
 # Node/npm development git shortcut, ignore package-lock.json w/o touching .gitignore
