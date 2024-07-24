@@ -74,6 +74,7 @@ mklink $PWD/unix-vimrc          ~/.unix_vimrc
 mklink $PWD/gvimrc              ~/.gvimrc
 mklink $PWD/nvimrc              ~/.nvimrc
 mklink $tmux_conf               ~/.tmux.conf
+mklink $PWD/tmux-prod.conf      ~/.tmux_prod.conf
 
 # Powerline
 if [ -n "`which powerline 2>/dev/null`" ]
