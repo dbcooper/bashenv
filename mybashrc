@@ -113,6 +113,10 @@ nodediff() {
 # XXX  Tilix VTE (Virtual Terminal Emulator) configuration thing breaks [my] powerline, just set to run as login shell
 # https://gnunn1.github.io/tilix-web/manual/vteconfig/
 
+# [If possible], unset any TMOUT variables w/in tmux sessions
+# Adapted from https://stackoverflow.com/a/53458406/1502174
+[[ -n "$TMOUT" && -n $(which gdb) ]] && echo "Unsetting TMOUT" && gdb -ex 'call (int) unbind_variable("TMOUT")' --pid=$$ --batch
+
 # Local machine-specific Bash environment setup--if any
 if [[ -e "$HOME/.bashrc.local" ]]
 then
