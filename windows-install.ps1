@@ -3,6 +3,10 @@
 #
 #    Set-ExecutionPolicy RemoteSigned
 #
+# Or maybe:
+#
+#    Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process
+#
 
 # Allow for HOMEDRIVE, HOMEPATH changes due to network mount/AD directive
 $my_home        = "$Env:HOMEDRIVE$Env:HOMEPATH"
@@ -103,3 +107,18 @@ Else {
     # Only copy over file if newer?
     xcopy gitconfig $gitconfig_file /D
 }
+
+
+# TODO  Neovim stuff?  It doesn't seem like gvim has an [obvious?] Windows Arm64 installer via winget?
+
+# Neovim + QT gui
+# XXX  _May_ need to install the following manually if on Arm64 silicon?  neovim has a hardcoded x86_64 MS VC redistributable
+#winget install microsoft.vcredist.2015+.arm64
+
+winget install rclone.rclone
+winget install neovim.neovim
+winget install equalsraf.neovim-qt
+
+# TODO  Install Python for Vi scripting?
+
+# TODO  Install Gimp
