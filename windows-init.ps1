@@ -18,7 +18,7 @@ winget install git.git
 # Generate elliptic SSH public key
 # Accept default location but set password when prompted
 Write-Output "Generating Elliptical SSH key.  Accept default location but set a key password when prompted.`n"
-ssh-keygen -t ed25519 
+ssh-keygen -t ed25519
 
 # SSH Agent authentication
 # XXX  Might have to run this in administrator PowerShell?
@@ -37,4 +37,16 @@ ssh-add $env:USERPROFILE\.ssh\id_ed25519
 
 # TODO  Touch sentinel file
 
-Write-Output "👉 If everything ran OK, now execute .\windows-install.ps1`n"
+Write-Host @"
+
+In order to get git working, do the following:
+
+1. Add the newly generated SSH key to your github account
+2. Start a Git-bash shell and run the following command:
+
+    git config --global core.sshCommand  "C:\\\\Windows\\\\System32\\\\OpenSSH\\\\ssh.exe"
+
+4. Clone the bashenv repository
+3. 👉 If everything ran OK, now execute .\windows-install.ps1
+
+"@

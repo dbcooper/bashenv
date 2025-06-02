@@ -109,16 +109,20 @@ Else {
 }
 
 
-# TODO  Neovim stuff?  It doesn't seem like gvim has an [obvious?] Windows Arm64 installer via winget?
+# XXX  I briefly looked to Neovim for binary-compatible Vi
+# However, I noticed recently (~June 2025) they started building Vim [nightlies] for Windows ARM64 (Aarch64) :)
 
 # Neovim + QT gui
 # XXX  _May_ need to install the following manually if on Arm64 silicon?  neovim has a hardcoded x86_64 MS VC redistributable
 #winget install microsoft.vcredist.2015+.arm64
+#winget install neovim.neovim
+#winget install equalsraf.neovim-qt
 
 winget install rclone.rclone
-winget install neovim.neovim
-winget install equalsraf.neovim-qt
 
-# TODO  Install Python for Vi scripting?
+#  Install Python for Vi scripting.  Supposedly Python 3.8 or later, Python 3.12 should be good to 2028-10
+# https://www.python.org/downloads/
+winget install python.python.3.12
 
-# TODO  Install Gimp
+# Install Gimp 3
+winget install gimp.gimp.3
