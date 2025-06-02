@@ -2,4 +2,5 @@
 set guifont=CodeNewRoman_Nerd_Font:h12:cANSI
 
 " Bad eye «enhance»
-map <F11> :set guifont=CodeNewRoman_Nerd_Font:h18:cANSI
+map <F11> :set guifont=CodeNewRoman_Nerd_Font:h18:cANSI
+
