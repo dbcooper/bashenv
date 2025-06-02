@@ -1,2 +1,5 @@
 "set guifont=Powerline_Consolas:h11:cANSI
-set guifont=CodeNewRoman_NF:h11:cANSI
+set guifont=CodeNewRoman_Nerd_Font:h12:cANSI
+
+" Bad eye «enhance»
+map <F11> :set guifont=CodeNewRoman_Nerd_Font:h18:cANSI
