@@ -108,6 +108,14 @@ Else {
     xcopy gitconfig $gitconfig_file /D
 }
 
+# TODO  Make these additional software installs optional
+
+# File tools?
+winget install rclone.rclone
+
+# Just installing PuTTY so I have pageant for WinSCP (SSH key)
+winget install putty.putty
+winget install winscp.winscp
 
 # XXX  I briefly looked to Neovim for binary-compatible Vi
 # However, I noticed recently (~June 2025) they started building Vim [nightlies] for Windows ARM64 (Aarch64) :)
@@ -118,7 +126,6 @@ Else {
 #winget install neovim.neovim
 #winget install equalsraf.neovim-qt
 
-winget install rclone.rclone
 
 #  Install Python for Vi scripting.  Supposedly Python 3.8 or later, Python 3.12 should be good to 2028-10
 # https://www.python.org/downloads/
@@ -126,3 +133,7 @@ winget install python.python.3.12
 
 # Install Gimp 3
 winget install gimp.gimp.3
+
+# Development++
+#winget install microsoft.visualstudiocode
+#winget install docker.dockerdesktop
