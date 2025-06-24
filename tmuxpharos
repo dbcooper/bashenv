@@ -6,6 +6,7 @@ SESSION='pharos-dev'
 # Assume first perl[brew] version listed is desired
 [[ -z "$PHAROS_PB_VER" ]] && PHAROS_PB_VER=`perlbrew list | tail -1`
 PHAROS_PATH="$HOME/git/pharos"
+VAGRANT_PATH="$HOME/git/virtual-cbi"
 
 # Development server
 tmux new-session -d -s $SESSION -n prho "cd $PHAROS_PATH; perlbrew use $PHAROS_PB_VER;"
@@ -18,3 +19,20 @@ tmux send-keys -t prho 'source bin/tools/setenv.sh' Enter 'prho' Enter
 # Pharos repository navigation/miscellaneous w/ perlbrew and environment
 tmux new-window -t $SESSION -a -n pharos "cd $PHAROS_PATH; perlbrew use $PHAROS_PB_VER;"
 tmux send-keys -t pharos 'FORCE_PHAROS=y source bin/tools/setenv.sh' Enter
+
+# XXX  Have to start shells in these windows (new-window), otherwise they'll close immediately after command finishes executing
+
+# Pharos repo edit window
+tmux new-window -t $SESSION -a -n pheditor "sleep 5; cd $PHAROS_PATH; bash"
+
+# If I'm setup to run vagrant/Pharos VM on this box
+if [[ -d "$VAGRANT_PATH" ]]
+then
+    # Switch to vagrant repo and try to launch the VM
+    tmux new-window -t $SESSION -a -n virtual-cbi "sleep 5; cd $VAGRANT_PATH; bash"
+    tmux send-keys -t virtual-cbi 'vagrant up' Enter
+
+    # Switch to vagrant repo and try to ssh into the VM (after waiting for VM to start)
+    tmux new-window -t $SESSION -a -n vagrantssh "sleep 5; cd $VAGRANT_PATH; bash"
+    tmux send-keys -t vagrantssh 'sleep 90; vagrant ssh' Enter
+fi
