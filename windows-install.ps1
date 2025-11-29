@@ -86,13 +86,9 @@ Write-Host @"
 
 In the git bash shell, start vim and run :PlugInstall.  After that, plugins _should_ work properly in Windows gvim as well.
 
-If you haven't already, you will need to install Python on the system for proper Vim (plugin) support.  You will need to install the appropriate Python version for whatever version gVim you're using was compiled against.
+If you haven't already, you will need to install Python on the system for proper Vim (plugin) support.
 
-E.g., gvim 8.0 32-bit was compiled against Python 3.5 so I did the following to get it to work:
-  - I _think_ only the major and minor version number matter (i.e., ignore patch)
-  - Download Python 3.5.4rc1 32-bit, < https://www.python.org/downloads/release/python-354rc1/ >
-  - Install Python 3.5 in c:\Python\Python35-32   # Idk if directory matters
-  - Copy python35.dll to the gvim 8.0 install directory, C:\Program Files (x86)\Vim\vim80
+AFAICT, these days (Vim 9.0) you can just install a stable version of Python 3 and it will "just work" w/ the python3 command/hook in Vim?  By default this script should install a reasonable version of Python 3 via winget.
 
 FMI
   - https://stackoverflow.com/a/17963884
@@ -116,6 +112,9 @@ winget install rclone.rclone
 # Just installing PuTTY so I have pageant for WinSCP (SSH key)
 winget install putty.putty
 winget install winscp.winscp
+
+# gvim (stable)
+winget install vim.vim
 
 # XXX  I briefly looked to Neovim for binary-compatible Vi
 # However, I noticed recently (~June 2025) they started building Vim [nightlies] for Windows ARM64 (Aarch64) :)
