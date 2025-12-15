@@ -45,8 +45,12 @@ endif
 
 " Function key mappings
 
-map #2 :set invpaste
-set pastetoggle=<F2>
+" nvim (at least 0.11.5) doesn't like pastetoggle [anymore?]
+if !has('nvim')
+    map #2 :set invpaste
+    set pastetoggle=<F2>
+endif
+
 map #3 :setlocal sts=2 sw=2 cindent
 map #4 :NERDTree
 
@@ -135,7 +139,7 @@ Plug 'honza/vim-snippets'
 
 " Other stuff
 Plug 'vitalk/vim-simple-todo'
-"Plug 'vim-vdebug/vdebug'
+Plug 'vim-vdebug/vdebug'
 
 " Stuff for Go language
 "Plug 'fatih/vim-go'
