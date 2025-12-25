@@ -11,3 +11,6 @@ set guifont=CodeNewRoman\ Nerd\ Font\ Mono\ 14
 " I'm not sure this does anything?!
 set t_vb="|20f"
 "set novisualbell
+
+" Bad eye «enhance»
+map <F11> :set guifont=CodeNewRoman\ Nerd\ Font\ Mono\ 18
