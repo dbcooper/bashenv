@@ -170,6 +170,15 @@ let g:airline#extensions#ale#enabled = 1
 
 call plug#end()
 
+" termguicolors appears to be necessary if using neovim 0.11.5 under tmux 3.5a (Fedora 43) and my vi airline plugin?
+" https://gist.github.com/andersevenrud/015e61af2fd264371032763d4ed965b6#neovim
+if has('nvim')
+    let nvim_version = v:lua.vim.version()
+    if nvim_version.major >= 0 && nvim_version.minor >= 10
+        set termguicolors
+    endif
+endif
+
 if has("gui_running")
     colorscheme molokai
 endif
