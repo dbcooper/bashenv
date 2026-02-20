@@ -13,6 +13,15 @@ Install the following packages:
 
     apt install git curl vim neovim ack-grep powerline tmux
 
+
+Install
+-------
+
+0. Make sure you have any necessary software installed (git, vim/neovim, ack, tmux, etc.)
+1. Clone the repository to the target computer
+2. Run the install script `./install.sh`
+
+
 Post-Install
 ------------
 
