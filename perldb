@@ -1,0 +1,4 @@
+# So I can use Data::Printer (pretty print) in CLI debugger
+# https://metacpan.org/pod/Data::Printer#Using-Data%3A%3APrinter-from-the-Perl-debugger
+use DB::Pluggable;
+DB::Pluggable->run_with_config( \'[DataPrinter]' );  # note the '\'
