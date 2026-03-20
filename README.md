@@ -6,12 +6,20 @@ configurations and cross-platform-y installation script(s) so it's
 quick and painless for me to setup a comfortable, consistent
 environment.
 
+RHEL / CentOS [headless] Preparation
+------------------------------------
+
+Install the following packages:
+
+    dnf install git vim-enhanced neovim python3-neovim ack tmux powerline htop
+
+
 Ubuntu/Debian(?) Preparation
 ----------------------------
 
 Install the following packages:
 
-    apt install git curl vim neovim ack-grep powerline tmux
+    apt install git curl vim neovim ack-grep powerline tmux htop
 
 
 Install
