@@ -11,8 +11,7 @@ RHEL / CentOS [headless] Preparation
 
 Install the following packages:
 
-    dnf install git vim-enhanced neovim python3-neovim ack tmux powerline htop
-
+    dnf install git vim-enhanced neovim python3-neovim ack tmux htop powerline the_silver_searcher
 
 Ubuntu/Debian(?) Preparation
 ----------------------------
