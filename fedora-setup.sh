@@ -3,6 +3,8 @@
 # NOTE: This is intended to be run just once
 # Additional Fedora-specific [Linux] configuration
 
+MY_FONTS=$HOME/.local/share/fonts
+
 # Prompt user and don't quit until we get a [non-empty] repsonse
 # Returns lowercase version of whatever they typed in $response
 user_prompt() {
@@ -20,6 +22,7 @@ user_prompt() {
 
 fedora_rpms="
     ack
+    the_silver_searcher
     htop
     cloc
     keychain
@@ -39,6 +42,7 @@ fedora_rpms="
     powerline-docs
 
     perl-CPAN
+    needrestart
 "
 
 # Repository setup, then RPMs/RPM groups
@@ -46,15 +50,16 @@ fedora_rpms="
 # From  https://rpmfusion.org/Configuration#Command_Line_Setup_using_rpm
 sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
-sudo dnf group install -y 'Development Tools'  'C Development Tools and Libraries'
+# XXX  Support Fedora 44 naming?
+sudo dnf group install -y 'development-tools'  'c-development'
 sudo dnf install $fedora_rpms
 
 # Install monaco font from https://github.com/inoyatov/monaco
 # XXX  This installs the font but I can't select it in gnome-terminal anyway :\
 font_fn=Ubuntu_Mono_derivative_Powerline.ttf
 curl -L --output $font_fn  https://github.com/inoyatov/monaco/raw/master/font/Ubuntu%20Mono%20derivative%20Powerline.ttf
-mkdir -p ~/.fonts
-mv $font_fn ~/.fonts
+mkdir -p $MY_FONTS
+mv $font_fn $MY_FONTS
 
 symbols_fn=10-powerline-symbols.conf
 mkdir -p ~/.config/fontconfig/conf.d/
@@ -116,7 +121,7 @@ then
 
     # Add Google Chrome [repository]
     # From https://docs.fedoraproject.org/en-US/quick-docs/installing-chromium-or-google-chrome-browsers/
-    sudo dnf config-manager --set-enabled google-chrome
+    sudo dnf config-manager enable google-chrome
 
     # Add "code" RPM to the to-be-installed RPM list.  Will probably need to `dnf check-update` first
     sudo dnf check-update
