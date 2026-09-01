@@ -73,7 +73,7 @@ mv $symbols_fn ~/.config/fontconfig/conf.d/
 fc-cache
 
 # Perl setup.  Install App::cpanminus w/ cpan, then perlbrew (via cpanm)
-cpan App::cpanminus
+sudo cpan App::cpanminus
 cpanm --sudo App::perlbrew
 
 # Optional [Full] desktop setup: more applications (RPMs) and conveniences
