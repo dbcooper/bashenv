@@ -142,7 +142,8 @@ done
 
 # SSH configuration
 mkdir -p ~/.ssh
-mklink $PWD/ssh-rc                  ~/.ssh/rc
+mklink $PWD/ssh-rc                  ~/.ssh/rc               0600
+mklink $PWD/ssh-environment         ~/.ssh/environment      0600
 
 # Common little utilities
 mkdir -p ~/bin
