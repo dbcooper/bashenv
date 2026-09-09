@@ -141,6 +141,9 @@ then
 fi
 
 # XXX  Workaround/solution for gnome-keyring nuking SSH agent forwarding on Fedora 43/44
+# I don't think this works/solves the issue, but a related thing I _can_ do.
+systemctl --user mask gnome-keyring-daemon.service gnome-keyring-daemon.socket
+
 # Ensure sshd supports for environment variables
 user_env=$(sudo sshd -T | grep -i 'permituserenvironment')
 if [[ -z "$user_env" ]]
