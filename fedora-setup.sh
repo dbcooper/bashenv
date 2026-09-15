@@ -7,7 +7,7 @@ MY_FONTS=$HOME/.local/share/fonts
 
 # Prompt user and don't quit until we get a [non-empty] repsonse
 # Returns lowercase version of whatever they typed in $response
-user_prompt() {
+function user_prompt() {
     local prompt=$1                     # prompt text
     local userinput
 
@@ -130,6 +130,36 @@ then
      sudo dnf install -y code google-chrome-stable
 fi
 
+
+# Perform environment check / setup for SSHD support
+function sshd_setup() {
+    # XXX  Workaround/solution for gnome-keyring nuking SSH agent forwarding on Fedora 43/44
+    # I don't think this works/solves the issue, but a related thing I _can_ do.
+    systemctl --user mask gnome-keyring-daemon.service gnome-keyring-daemon.socket
+
+    # Ensure sshd supports for environment variables
+    user_env=$(sudo sshd -T | grep -i 'permituserenvironment')
+    if [[ -z "$user_env" ]]
+    then
+        echo "? ⚠️ Didn't detect 'permituserenvironment' in sshd configuration? ⚠️ "
+    else
+        # Verify permituserenvironment is enabled (yes)
+        ue_state=$(echo "$user_env" | awk '{ print $2; }' | tr '[:upper:]' '[:lower:]')
+        if [[ "$ue_state" != 'yes' ]]
+        then
+            # Which file contains the PermitUserEnvironment declaration?
+            conf_file=$(sudo grep -l -R -i 'permituserenvironment' /etc/ssh/sshd_config /etc/ssh/sshd_config.d/)
+            echo " 🛑  WARNING: SSHD configuration does _not_ have PermitUserEnvironment enabled (yes).  🛑 "
+            if [[ -n "$conf_file" ]]
+            then
+                echo -e "\nPermitUserEnvironment declaration/reference(s) appear in: $conf_file"
+            fi
+            echo -e "\n👉  Edit your sshd configuration (should be underneath /etc/ssh/) and add the following line to the $conf_file file: 👈"
+            echo -e "\nPermitUserEnvironment yes\n"
+        fi
+    fi
+}
+
 # Ask/confirm, re: need to SSH into box
 echo "Do you want to setup SSH access to this machine?"
 user_prompt 'Type "yes" to setup SSH, or anything else to skip [besides Enter]: '
@@ -138,32 +168,8 @@ then
     # Ensure SSH daemon is setup
     sudo systemctl start sshd.service
     sudo systemctl enable sshd.service
+    sshd_setup
 fi
 
-# XXX  Workaround/solution for gnome-keyring nuking SSH agent forwarding on Fedora 43/44
-# I don't think this works/solves the issue, but a related thing I _can_ do.
-systemctl --user mask gnome-keyring-daemon.service gnome-keyring-daemon.socket
-
-# Ensure sshd supports for environment variables
-user_env=$(sudo sshd -T | grep -i 'permituserenvironment')
-if [[ -z "$user_env" ]]
-then
-    echo "? ⚠️ Didn't detect 'permituserenvironment' in sshd configuration? ⚠️ "
-else
-    # Verify permituserenvironment is enabled (yes)
-    ue_state=$(echo "$user_env" | awk '{ print $2; }' | tr '[:upper:]' '[:lower:]')
-    if [[ "$ue_state" != 'yes' ]]
-    then
-        # Which file contains the PermitUserEnvironment declaration?
-        conf_file=$(sudo grep -l -R -i 'permituserenvironment' /etc/ssh/sshd_config /etc/ssh/sshd_config.d/)
-        echo " 🛑  WARNING: SSHD configuration does _not_ have PermitUserEnvironment enabled (yes).  🛑 "
-        if [[ -n "$conf_file" ]]
-        then
-            echo -e "\nPermitUserEnvironment declaration/reference(s) appear in: $conf_file"
-        fi
-        echo -e "\n👉  Edit your sshd configuration (should be underneath /etc/ssh/) and add the following line to the $conf_file file: 👈"
-        echo -e "\nPermitUserEnvironment yes\n"
-    fi
-fi
 
 # TODO  GUI keyboard shortcuts for terminal(s)
