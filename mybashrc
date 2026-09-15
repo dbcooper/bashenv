@@ -28,7 +28,9 @@ alias cls='clear'
 # Moar colors
 if [ "$COLORTERM" = 'gnome-terminal' ]
 then
-    TERM='xterm-256color'
+    # XXX  In Fedora 42, looks like Gnome-Terminal and Tilix's COLORTERM is "truecolor"
+    echo "Skipping forcing xterm-256color in gnome-terminal?!"
+    #TERM='xterm-256color'
 fi
 
 # Handle "linux" (console) TERM: no powerline, simpler prompt, etc.
